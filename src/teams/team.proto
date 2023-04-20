@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package team;
+
+service TeamController {
+  rpc GetTeamById (GetTeamByIdRequest) returns (GetTeamByIdResponse);
+  rpc GetAllTeams (GetAllTeamsRequest) returns (GetAllTeamsResponse);
+  rpc CreateTeam (CreateTeamRequest) returns (CreateTeamResponse);
+  rpc UpdateTeam (UpdateTeamRequest) returns (UpdateTeamResponse);
+  rpc DeleteAllTeams (DeleteAllTeamsRequest) returns (DeleteAllTeamsResponse);
+  rpc DeleteTeamById (DeleteTeamByIdRequest) returns (DeleteTeamByIdResponse);
+  rpc DeleteManyTeams (DeleteManyTeamsRequest) returns (DeleteManyTeamsResponse);
+}
+
+message GetTeamByIdRequest {
+  int32 id = 1;
+}
+
+message GetTeamByIdResponse {
+  Team team = 1;
+}
+
+message GetAllTeamsRequest {}
+
+message GetAllTeamsResponse {
+  repeated Team teams = 1;
+}
+
+message CreateTeamRequest {
+  string name = 1;
+  string logoUrl = 2;
+  int32 tier = 3;
+}
+
+message CreateTeamResponse {
+  Team team = 1;
+}
+
+message UpdateTeamRequest {
+  TeamId where = 1;
+  PartialTeam data = 2;
+}
+
+message UpdateTeamResponse {
+  Team team = 1;
+}
+
+message DeleteAllTeamsRequest {}
+
+message DeleteAllTeamsResponse {
+  PrismaBatchPayload batchPayload = 1;
+}
+
+message DeleteTeamByIdRequest {
+  int32 id = 1;
+}
+
+message DeleteTeamByIdResponse {
+  Team team = 1;
+}
+
+message DeleteManyTeamsRequest {
+  PartialTeam where = 1;
+}
+
+message DeleteManyTeamsResponse {
+  PrismaBatchPayload batchPayload = 1;
+}
+
+message Team {
+  int32 id = 1;
+  string name = 2;
+  int32 strength = 3;
+  string logoUrl = 4;
+  int32 tier = 5;
+}
+
+message TeamId {
+  int32 id = 1;
+}
+
+message PartialTeam {
+  optional int32 id = 1;
+  optional string name = 2;
+  optional int32 strength = 3;
+  optional string logoUrl = 4;
+  optional int32 tier = 5;
+}
+
+message PrismaBatchPayload {
+  int32 count = 1;
+}

@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join } from 'node:path';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
@@ -10,11 +10,11 @@ async function bootstrap() {
       transport: Transport.GRPC,
       options: {
         package: 'team',
-        protoPath: join(__dirname, './teams/team.proto')
+        protoPath: join(__dirname, './teams/team.proto'),
       },
     },
   );
-  await app.listen()
+  await app.listen();
 }
 
 bootstrap();
