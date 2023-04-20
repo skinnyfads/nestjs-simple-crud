@@ -28,7 +28,7 @@ export class TeamService {
 
   async update(params: {
     where: Prisma.TeamWhereUniqueInput;
-    newData: Prisma.TeamUpdateInput;
+    data: Prisma.TeamUpdateInput;
   }): Promise<Team> {
     return this.prisma.team.update(params);
   }
